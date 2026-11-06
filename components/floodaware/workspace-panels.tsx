@@ -100,7 +100,7 @@ const severityOrder: Record<FloodReport['severity'], number> = {
   Impassable: 4,
 }
 
-const chartColors = ['#9BD6A8', '#1F5A33', '#FF8A9B', '#C8102E']
+const chartColors = ['#16A34A', '#FACC15', '#DC2626', '#991B1B']
 
 function formatNumber(value: number | null | undefined, unit: string, digits = 1) {
   return typeof value === 'number' && Number.isFinite(value) ? `${value.toFixed(digits)} ${unit}` : 'Unavailable'
@@ -198,8 +198,10 @@ function LayersPanel(props: WorkspacePanelsProps) {
         <div className="legend-row"><span className="legend-marker legend-marker--knee" aria-hidden="true" /><span><strong>Knee-deep</strong><small>Caution for low-clearance cars</small></span></div>
         <div className="legend-row"><span className="legend-marker legend-marker--waist" aria-hidden="true">!</span><span><strong>Waist-deep</strong><small>Severe obstruction · avoid</small></span></div>
         <div className="legend-row"><span className="legend-marker legend-marker--blocked" aria-hidden="true">×</span><span><strong>Impassable</strong><small>Road reported blocked</small></span></div>
-        <div className="legend-row"><span className="legend-zone legend-zone--low" aria-hidden="true" /><span><strong>Low to moderate zone</strong><small>Relative advisory boundary</small></span></div>
-        <div className="legend-row"><span className="legend-zone legend-zone--high" aria-hidden="true" /><span><strong>High to severe zone</strong><small>Check reports before travel</small></span></div>
+        <div className="legend-row"><span className="legend-zone legend-zone--low" aria-hidden="true" /><span><strong>Low risk zone</strong><small>Green · generally safe</small></span></div>
+        <div className="legend-row"><span className="legend-zone legend-zone--moderate" aria-hidden="true" /><span><strong>Moderate risk zone</strong><small>Yellow · use caution</small></span></div>
+        <div className="legend-row"><span className="legend-zone legend-zone--high" aria-hidden="true" /><span><strong>High to severe zone</strong><small>Red · check reports before travel</small></span></div>
+        <div className="legend-row"><span className="legend-marker legend-marker--user" aria-hidden="true" /><span><strong>Your location</strong><small>Blue · selected map center</small></span></div>
         <div className="legend-row"><span className="legend-route legend-route--safe" aria-hidden="true" /><span><strong>Safest route</strong><small>Recommended by hazard score</small></span></div>
         <div className="legend-row"><span className="legend-route legend-route--other" aria-hidden="true" /><span><strong>Other alternatives</strong><small>Compare time and exposure</small></span></div>
       </div>

@@ -8,10 +8,15 @@ import type { FloodReport, GeoPoint, RawRoute, RiskZone, RouteComparison, Underp
 import { getReportAge, isReportActive } from '@/lib/floodaware'
 
 const riskColors = {
-  Low: '#1F5A33',
-  Moderate: '#1F5A33',
-  High: '#C8102E',
-  Severe: '#C8102E',
+  Low: '#16A34A',
+  Moderate: '#FACC15',
+  High: '#DC2626',
+  Severe: '#991B1B',
+} as const
+
+const routeColors = {
+  selected: '#2563EB',
+  alternative: '#60A5FA',
 } as const
 
 const markerSizes: Record<FloodReport['severity'], number> = {
@@ -208,7 +213,7 @@ export function FloodMap({
           key={zone.id}
           center={[zone.latitude, zone.longitude]}
           radius={zone.radius}
-          pathOptions={{ color: riskColors[zone.level], fillColor: riskColors[zone.level], fillOpacity: zone.level === 'Low' || zone.level === 'Moderate' ? 0.28 : 0.42, weight: 2, dashArray: '7 6' }}
+          pathOptions={{ color: riskColors[zone.level], fillColor: riskColors[zone.level], fillOpacity: zone.level === 'Low' ? 0.26 : zone.level === 'Moderate' ? 0.32 : 0.42, weight: 2, dashArray: '7 6' }}
         >
           <Popup>
             <div className="map-popup-card">
@@ -228,7 +233,7 @@ export function FloodMap({
             {isSelected && <Polyline positions={positions} pathOptions={{ color: '#F2F1EC', weight: 11, opacity: 0.96 }} />}
             <Polyline
               positions={positions}
-              pathOptions={{ color: isSelected ? '#1F5A33' : '#C8102E', weight: isSelected ? 7 : 4, opacity: 0.96, dashArray: isSelected ? undefined : '9 9' }}
+              pathOptions={{ color: isSelected ? routeColors.selected : routeColors.alternative, weight: isSelected ? 7 : 4, opacity: 0.96, dashArray: isSelected ? undefined : '9 9' }}
               eventHandlers={{ click: () => onSelectRoute(route.id) }}
             />
           </Fragment>

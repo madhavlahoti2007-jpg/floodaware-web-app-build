@@ -6,6 +6,13 @@
   --paper: #F2F1EC;
   --mint: #9BD6A8;
   --rose: #FF8A9B;
+  --hazard-red: #DC2626;
+  --hazard-red-deep: #991B1B;
+  --hazard-yellow: #FACC15;
+  --hazard-green: #16A34A;
+  --hazard-blue: #2563EB;
+  --hazard-blue-light: #60A5FA;
+  --hazard-ink: #111827;
   --panel-line: rgba(242, 241, 236, .15);
   --panel-soft: rgba(242, 241, 236, .06);
   --panel-deep: #181A1C;
@@ -189,15 +196,17 @@ html.dark body {
 .legend-row strong { color: var(--paper); font-size: 13px; line-height: 1.35; }
 .legend-row small { color: rgba(242, 241, 236, .68); font-size: 12px; line-height: 1.35; }
 .legend-marker { display: inline-grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border: 3px solid var(--charcoal); outline: 2px solid var(--paper); border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, .45); color: var(--paper); font-size: 14px; font-weight: 900; }
-.legend-marker--ankle { background: var(--paper); border-color: var(--forest); }
-.legend-marker--knee { background: var(--forest); }
-.legend-marker--waist { width: 25px; height: 25px; border: 0; outline: 2px solid var(--paper); background: var(--crimson); clip-path: polygon(50% 0, 0 100%, 100% 100%); padding-top: 7px; }
-.legend-marker--blocked { width: 26px; height: 26px; transform: rotate(45deg); border-radius: 3px; background: var(--crimson); }
+.legend-marker--ankle { background: var(--hazard-green); }
+.legend-marker--knee { background: var(--hazard-yellow); color: var(--hazard-ink); }
+.legend-marker--waist { width: 25px; height: 25px; border: 0; outline: 2px solid var(--paper); background: var(--hazard-red); clip-path: polygon(50% 0, 0 100%, 100% 100%); padding-top: 7px; }
+.legend-marker--blocked { width: 26px; height: 26px; transform: rotate(45deg); border-radius: 3px; background: var(--hazard-red-deep); }
 .legend-marker--blocked::first-letter { transform: rotate(-45deg); }
-.legend-zone { width: 24px; height: 24px; flex: 0 0 24px; border: 2px dashed var(--forest); border-radius: 50%; background: rgba(31, 90, 51, .3); }
-.legend-zone--high { border-color: var(--crimson); background: rgba(200, 16, 46, .36); }
-.legend-route { width: 30px; height: 7px; flex: 0 0 30px; border-radius: 999px; background: var(--forest); outline: 2px solid var(--paper); }
-.legend-route--other { height: 4px; outline: 0; background: repeating-linear-gradient(90deg, var(--crimson), var(--crimson) 6px, transparent 6px, transparent 10px); }
+.legend-marker--user { width: 22px; height: 22px; flex-basis: 22px; border-width: 4px; border-color: var(--paper); outline: 0; background: var(--hazard-blue); }
+.legend-zone { width: 24px; height: 24px; flex: 0 0 24px; border: 2px dashed var(--hazard-green); border-radius: 50%; background: rgba(22, 163, 74, .32); }
+.legend-zone--moderate { border-color: var(--hazard-yellow); background: rgba(250, 204, 21, .34); }
+.legend-zone--high { border-color: var(--hazard-red); background: rgba(220, 38, 38, .4); }
+.legend-route { width: 30px; height: 7px; flex: 0 0 30px; border-radius: 999px; background: var(--hazard-blue); outline: 2px solid var(--paper); }
+.legend-route--other { height: 4px; outline: 0; background: repeating-linear-gradient(90deg, var(--hazard-blue-light), var(--hazard-blue-light) 6px, transparent 6px, transparent 10px); }
 
 .report-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0 8px; }
 .report-toolbar .panel-kicker { letter-spacing: .03em; }
@@ -405,6 +414,14 @@ html.dark body {
 .map-popup-card .popup-description { margin: 7px 0; color: var(--paper); font-size: 14px; }
 .map-popup-card .popup-meta { margin: 4px 0; color: rgba(242, 241, 236, .7); font-size: 12px; }
 .map-popup-card .severity-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; border-radius: 999px; background: var(--crimson); color: var(--paper); font-size: 12px; font-weight: 700; }
+.map-popup-card .severity-pill--ankle,
+.map-popup-card .severity-pill--low { background: var(--hazard-green); color: var(--paper); }
+.map-popup-card .severity-pill--knee,
+.map-popup-card .severity-pill--moderate { background: var(--hazard-yellow); color: var(--hazard-ink); }
+.map-popup-card .severity-pill--waist,
+.map-popup-card .severity-pill--high { background: var(--hazard-red); color: var(--paper); }
+.map-popup-card .severity-pill--impassable,
+.map-popup-card .severity-pill--severe { background: var(--hazard-red-deep); color: var(--paper); }
 .map-popup-card .demo-pill,
 .map-popup-card .resolved-pill { padding: 3px 7px; border-radius: 999px; border: 1px solid var(--panel-line); font-size: 11px; font-weight: 700; }
 .map-popup-card .demo-pill { color: var(--rose); }
@@ -415,18 +432,18 @@ html.dark body {
 .map-popup-card .popup-photo { width: 100%; max-height: 140px; margin-top: 8px; object-fit: cover; border-radius: 8px; }
 .flood-marker-shell { border: 0 !important; background: transparent !important; }
 .flood-marker { display: grid; place-items: center; width: 100%; height: 100%; border: 3px solid var(--charcoal); outline: 2px solid var(--paper); box-shadow: 0 2px 6px rgba(0, 0, 0, .52); color: var(--paper); font-size: 18px; font-weight: 900; line-height: 1; }
-.flood-marker--ankle { width: 16px; height: 16px; margin: auto; border: 4px solid var(--forest); border-radius: 50%; outline: 2px solid var(--paper); background: var(--paper); }
-.flood-marker--knee { width: 22px; height: 22px; margin: auto; border: 3px solid var(--charcoal); border-radius: 50%; outline: 2px solid var(--paper); background: var(--forest); }
-.flood-marker--waist { width: 28px; height: 28px; margin: auto; border: 0; outline: 2px solid var(--paper); background: var(--crimson); clip-path: polygon(50% 0, 0 100%, 100% 100%); padding-top: 8px; }
-.flood-marker--impassable { width: 30px; height: 30px; margin: auto; border: 3px solid var(--charcoal); border-radius: 3px; outline: 2px solid var(--paper); background: var(--crimson); transform: rotate(45deg); }
+.flood-marker--ankle { width: 18px; height: 18px; margin: auto; border: 3px solid var(--charcoal); border-radius: 50%; outline: 2px solid var(--paper); background: var(--hazard-green); }
+.flood-marker--knee { width: 22px; height: 22px; margin: auto; border: 3px solid var(--charcoal); border-radius: 50%; outline: 2px solid var(--paper); background: var(--hazard-yellow); color: var(--hazard-ink); }
+.flood-marker--waist { width: 28px; height: 28px; margin: auto; border: 0; outline: 2px solid var(--paper); background: var(--hazard-red); clip-path: polygon(50% 0, 0 100%, 100% 100%); padding-top: 8px; }
+.flood-marker--impassable { width: 30px; height: 30px; margin: auto; border: 3px solid var(--charcoal); border-radius: 3px; outline: 2px solid var(--paper); background: var(--hazard-red-deep); transform: rotate(45deg); }
 .flood-marker--impassable > span { transform: rotate(-45deg); }
-.flood-marker--impassable::after { position: absolute; inset: -9px; border: 2px solid var(--crimson); border-radius: 5px; content: ''; animation: hazard-pulse 1.8s ease-out infinite; }
+.flood-marker--impassable::after { position: absolute; inset: -9px; border: 2px solid var(--hazard-red); border-radius: 5px; content: ''; animation: hazard-pulse 1.8s ease-out infinite; }
 @keyframes hazard-pulse { to { transform: scale(1.55); opacity: 0; } }
-.flood-user-marker { display: grid; width: 25px; height: 25px; place-items: center; border: 3px solid var(--charcoal); outline: 2px solid var(--paper); border-radius: 50%; background: var(--paper); box-shadow: 0 2px 8px rgba(0, 0, 0, .4); }
-.flood-user-marker > span { width: 9px; height: 9px; border-radius: 50%; background: var(--forest); }
-.flood-spot-marker { display: grid; width: 26px; height: 26px; place-items: center; border: 2px solid var(--paper); border-radius: 5px; background: var(--charcoal); color: var(--paper); font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
+.flood-user-marker { display: grid; width: 25px; height: 25px; place-items: center; border: 4px solid var(--paper); outline: 0; border-radius: 50%; background: var(--hazard-blue); box-shadow: 0 0 0 6px rgba(37, 99, 235, .28), 0 2px 8px rgba(0, 0, 0, .4); }
+.flood-user-marker > span { width: 0; height: 0; }
+.flood-spot-marker { display: grid; width: 26px; height: 26px; place-items: center; border: 2px solid var(--charcoal); border-radius: 5px; background: var(--hazard-yellow); color: var(--hazard-ink); font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
 .flood-spot-marker > span::before { content: 'U'; }
-.route-warning-marker { display: grid; width: 28px; height: 28px; place-items: center; background: var(--crimson); clip-path: polygon(50% 0, 0 100%, 100% 100%); color: var(--paper); font-size: 14px; font-weight: 900; }
+.route-warning-marker { display: grid; width: 28px; height: 28px; place-items: center; background: var(--hazard-red); clip-path: polygon(50% 0, 0 100%, 100% 100%); color: var(--paper); font-size: 14px; font-weight: 900; }
 .route-endpoint-icon { border: 0 !important; background: transparent !important; }
 .route-endpoint-icon span { display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid var(--paper); border-radius: 50%; background: var(--charcoal); color: var(--paper); font-family: var(--font-mono); font-size: 13px; font-weight: 700; box-shadow: 0 2px 6px rgba(0, 0, 0, .4); }
 
